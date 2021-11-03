@@ -19,7 +19,7 @@
         "php": "^7.2",
         "ext-zlib": "*",
         "mhauri/base45": "^0.1.1",
-        "nesbot/carbon": "^2.54",
+        "nesbot/carbon": "^1.37.1",
         "spomky-labs/cbor-php": "^1.1.1"
     },
     "require-dev": {
