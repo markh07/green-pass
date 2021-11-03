@@ -56,6 +56,14 @@ class TestResult extends CertificateType
      */
     public $centre;
 
+    /**
+     * The last date on which the certificate is considered to be valid,
+     * assigned by the certificate issuer.
+     *
+     * @var Carbon|null
+     */
+    public $validUntil;
+
     public function __construct(array $data)
     {
         $this->id = $data['t'][0]['ci'] ?? null;
@@ -68,8 +76,23 @@ class TestResult extends CertificateType
         $this->type = $data['t'][0]['tt'] ?? null;
         $this->name = $data['t'][0]['tm'] ?? null;
         $this->device = $data['t'][0]['ma'] ?? null;
-        $this->date = !empty($data['t'][0]['sc']) ? Carbon::parse($data['t'][0]['sc']) : null;
         $this->result = $data['t'][0]['tr'] ?? null;
         $this->centre = $data['t'][0]['tc'] ?? null;
+
+        $this->date = null;
+        $this->validUntil = null;
+        if (!empty($data['t'][0]['sc'])) {
+            $this->date = Carbon::parse($data['t'][0]['sc']);
+
+            $this->validUntil = Carbon::parse($data['t'][0]['sc']);
+            switch ($this->type) {
+                case 'LP6464-4':
+                    $this->validUntil->addHours(72); // molecular
+                    break;
+                case 'LP217198-3':
+                    $this->validUntil->addHours(48); // rapid
+                    break;
+            }
+        }
     }
 }

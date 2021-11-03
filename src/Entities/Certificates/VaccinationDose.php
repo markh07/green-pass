@@ -52,6 +52,14 @@ class VaccinationDose extends CertificateType
      */
     public $date;
 
+    /**
+     * The last date on which the certificate is considered to be valid,
+     * assigned by the certificate issuer.
+     *
+     * @var Carbon|null
+     */
+    public $validUntil;
+
     public function __construct(array $data)
     {
         $this->id = $data['v'][0]['ci'] ?? null;
@@ -66,6 +74,14 @@ class VaccinationDose extends CertificateType
         $this->manufacturer = $data['v'][0]['ma'] ?? null;
         $this->doseGiven = $data['v'][0]['dn'] ?? 0;
         $this->totalDoses = $data['v'][0]['sd'] ?? 0;
-        $this->date = !empty($data['v'][0]['dt'] ?? null) ? Carbon::parse($data['v'][0]['dt']) : null;
+
+        $this->date = null;
+        $this->validUntil = null;
+        if (! empty($data['v'][0]['dt'] ?? null)) {
+            $this->date = Carbon::parse($data['v'][0]['dt']);
+
+            $this->validUntil = Carbon::parse($data['v'][0]['dt']);
+            $this->validUntil->addYear();
+        }
     }
 }
