@@ -11,14 +11,14 @@ abstract class CertificateType
      *
      * @var string|null
      */
-    public ?string $id;
+    public $id;
 
     /**
      * Disease or agent from which the holder has recovered.
      *
      * @var DiseaseAgent
      */
-    public DiseaseAgent $diseaseAgent;
+    public $diseaseAgent;
 
     /**
      * Member State or third country in which the vaccine
@@ -26,12 +26,12 @@ abstract class CertificateType
      *
      * @var string|null
      */
-    public ?string $country;
+    public $country;
 
     /**
      * Certificate issuer
      *
      * @var string|null
      */
-    public ?string $issuer;
+    public $issuer;
 }

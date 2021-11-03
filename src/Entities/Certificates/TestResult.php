@@ -13,7 +13,7 @@ class TestResult extends CertificateType
      *
      * @var string|null
      */
-    public ?string $type;
+    public $type;
 
     /**
      * The name of the nucleic acid amplification test (NAAT) used.
@@ -26,35 +26,35 @@ class TestResult extends CertificateType
      *
      * @var string|null
      */
-    public ?string $name;
+    public $name;
 
     /**
      * Rapid antigen test (RAT) device identifier from the JRC database.
      *
      * @var string|null
      */
-    public ?string $device;
+    public $device;
 
     /**
      * Date and time of the test sample collection.
      *
      * @var Carbon|null
      */
-    public ?Carbon $date;
+    public $date;
 
     /**
      * The result of the test.
      *
      * @var string|null
      */
-    public ?string $result;
+    public $result;
 
     /**
      * Name of the actor (centre/facility) that conducted the test.
      *
      * @var string|null
      */
-    public ?string $centre;
+    public $centre;
 
     public function __construct(array $data)
     {
@@ -68,7 +68,7 @@ class TestResult extends CertificateType
         $this->type = $data['t'][0]['tt'] ?? null;
         $this->name = $data['t'][0]['tm'] ?? null;
         $this->device = $data['t'][0]['ma'] ?? null;
-        $this->date = ! empty($data['t'][0]['sc']) ? Carbon::parse($data['t'][0]['sc']) : null;
+        $this->date = !empty($data['t'][0]['sc']) ? Carbon::parse($data['t'][0]['sc']) : null;
         $this->result = $data['t'][0]['tr'] ?? null;
         $this->centre = $data['t'][0]['tc'] ?? null;
     }

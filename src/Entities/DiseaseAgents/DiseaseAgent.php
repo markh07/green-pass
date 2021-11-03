@@ -26,9 +26,11 @@ abstract class DiseaseAgent
      */
     public static function resolveById(string $id): self
     {
-        return match ($id) {
-            "840539006" => new Covid19(),
-            default => throw new InvalidDiseaseAgent(),
-        };
+        switch ($id) {
+            case "840539006":
+                return new Covid19();
+            default:
+                throw new InvalidDiseaseAgent();
+        }
     }
 }

@@ -13,21 +13,21 @@ class VaccinationDose extends CertificateType
      *
      * @var string|null
      */
-    public ?string $type;
+    public $type;
 
     /**
      * Medicinal product used for this specific dose of vaccination.
      *
      * @var string|null
      */
-    public ?string $product;
+    public $product;
 
     /**
      * Vaccine marketing authorization holder or manufacturer
      *
      * @var string|null
      */
-    public ?string $manufacturer;
+    public $manufacturer;
 
     /**
      * Sequence number (positive integer) of the dose given
@@ -35,7 +35,7 @@ class VaccinationDose extends CertificateType
      *
      * @var int
      */
-    public int $doseGiven;
+    public $doseGiven;
 
     /**
      * Total number of doses (positive integer) in a complete vaccination
@@ -43,14 +43,14 @@ class VaccinationDose extends CertificateType
      *
      * @var int
      */
-    public int $totalDoses;
+    public $totalDoses;
 
     /**
      * The date when the described dose was received.
      *
      * @var Carbon|null
      */
-    public ?Carbon $date;
+    public $date;
 
     public function __construct(array $data)
     {
@@ -66,6 +66,6 @@ class VaccinationDose extends CertificateType
         $this->manufacturer = $data['v'][0]['ma'] ?? null;
         $this->doseGiven = $data['v'][0]['dn'] ?? 0;
         $this->totalDoses = $data['v'][0]['sd'] ?? 0;
-        $this->date = ! empty($data['v'][0]['dt'] ?? null) ? Carbon::parse($data['v'][0]['dt']) : null;
+        $this->date = !empty($data['v'][0]['dt'] ?? null) ? Carbon::parse($data['v'][0]['dt']) : null;
     }
 }

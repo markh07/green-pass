@@ -66,7 +66,7 @@ class Decoder
 
     public static function qrcode(string $qrcode): GreenPass
     {
-        if (! Validator::qrcodePrefix($qrcode)) {
+        if (!Validator::qrcodePrefix($qrcode)) {
             throw new InvalidQrcode();
         }
 

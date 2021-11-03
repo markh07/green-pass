@@ -15,23 +15,23 @@ class GreenPass
      *
      * @var string|mixed|null
      */
-    public ?string $version;
+    public $version;
 
     /**
      * The person who holds the certificate.
      *
      * @var Holder
      */
-    public Holder $holder;
+    public $holder;
 
     /**
      * Certificate issued.
      *
      * @var CertificateType
      */
-    public CertificateType $certificate;
+    public $certificate;
 
-    public function __construct(protected array $data)
+    public function __construct(array $data)
     {
         $this->version = $data['ver'] ?? null;
 
